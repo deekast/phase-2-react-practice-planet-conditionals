@@ -4,8 +4,12 @@ import PlanetsContainer from "./PlanetsContainer"
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
-
   const [planets, setPlanets] = useState([])
+
+  const toggleMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
 
 
   useEffect(() => {
@@ -18,12 +22,14 @@ function App() {
   // console.log(planets)
 
   return (
-    <div className="App">
+    <div className={`App ${isDarkMode ? '' : 'light-mode'}`}>
 
       {/* You won't have to touch StarField, it's just here for visual things */}
       <StarField />
 
-      <button>Light Mode</button>
+      <button onClick={toggleMode}>
+        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+      </button>
 
       <PlanetsContainer planets={planets} />
 
